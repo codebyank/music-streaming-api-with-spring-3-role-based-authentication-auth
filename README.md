@@ -12,7 +12,8 @@
 ## TechStack
 - Oops in java.
 ## Freamework
-- Springboot version 3.0.4 and Spring security
+- Springboot version 3.0.4.
+- Spring Security.
 ## Documentation
 - Swagger implementation of api.
 ## Datastructure used 
