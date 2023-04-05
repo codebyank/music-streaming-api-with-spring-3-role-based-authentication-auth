@@ -30,5 +30,10 @@
 - For authenticate user and restrict role of user and provide authorisation based on their roles. Using Spring Security
   of spring framework.
 - project is deployed on Aws web services.
+
+
+https://user-images.githubusercontent.com/109346750/230103637-2545947f-5c93-4bd6-bc2f-3c3ec3a85792.mp4
+
+- Swagger URL <a>href="http://http//:localhost:8080/swagger-ui/index.html#/"</a>
 ## Webservices
 - Aws EC2 machine and EC2 OS is ubuntu.
