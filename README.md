@@ -3,6 +3,7 @@
 - We can store data of song, playlist and user info and also Admin have right to manage song data and other normal user manage only
   playlist data.
 - Used Spring Security basic authentication and authorisation to restrict role of user and provide authorisation of user.
+
  ## tool
  - Intellij IDE.
  ## Build tool
@@ -14,6 +15,8 @@
 ## Freamework
 - Springboot version 3.0.4.
 - Spring Security.
+![Annotation 2023-04-07 140830](https://user-images.githubusercontent.com/109346750/230574936-1db35f4e-28d2-470c-abb7-ed6ef6b416e2.png)
+
 ## Documentation
 - Swagger implementation of api.
 ## Datastructure used 
