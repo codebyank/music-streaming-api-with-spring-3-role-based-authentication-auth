@@ -18,7 +18,12 @@ public interface SongRepo extends JpaRepository<Song,Integer> {
     @Query(value ="delete  from tbl_song where song_name=:name",
             countQuery = "select count(*) from tbl_song",nativeQuery = true)
     public void deleteByName(String name);
-
+  @Modifying
+    @Transactional
+    @Query(value ="delete  from tbl_song where playlist_id=:id",
+            countQuery = "select count(*) from tbl_song",nativeQuery = true)
+    public void deleteByPlaylistId(int id);
+    
     @Query(value="select * from tbl_song where playlist_id=:id", nativeQuery=true)
     public List<Song> findByPlaylistId(int id);
 }
