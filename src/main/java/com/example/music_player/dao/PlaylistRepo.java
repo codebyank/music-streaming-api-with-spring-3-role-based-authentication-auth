@@ -11,4 +11,6 @@ import java.util.List;
 public interface PlaylistRepo extends JpaRepository<Playlist,Integer> {
     @Query(value="select * from tbl_playlist where playlist_name=:name ", nativeQuery=true)
     public List<Playlist> findByName(String name);
+      @Query(value="select * from tbl_playlist where user_id=:id ", nativeQuery=true)
+    public List<Playlist> findByUserId(int id);
 }
