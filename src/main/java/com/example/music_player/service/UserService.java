@@ -1,7 +1,9 @@
 package com.example.music_player.service;
 
+import com.example.music_player.dao.PlaylistRepo;
 import com.example.music_player.dao.UserRepo;
 import com.example.music_player.dto.UserDto;
+import com.example.music_player.model.Playlist;
 import com.example.music_player.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +17,11 @@ public class UserService  {
     UserRepo userRepo;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    PlaylistRepo playlistRepo;
+    @Autowired
+    PlaylistService playlistService;
+
     public void saveUser(User newUser) {
         String password= passwordEncoder.encode(newUser.getPassword());
         newUser.setPassword(password);
@@ -27,11 +34,19 @@ public class UserService  {
 
     public String deleteUser(int id) {
 
-        if(!userRepo.existsById(id)){
-            return "user not exist";
+        if(userRepo.existsById(id)){
+            List<Playlist> playlists=playlistRepo.findByUserId(id);
+             if(!playlists.isEmpty()){
+                for(Playlist p:playlists){
+                    playlistService.deleteById(p.getPlaylistId());
+                }
+             }
+            userRepo.deleteById(id);
+             return "deleted";
         }
-        userRepo.deleteById(id);
-        return "deleted";
+
+
+        return "user not exist";
     }
 
     public User getUser(int id) {
@@ -59,3 +74,4 @@ public class UserService  {
         return "user updated";
     }
 }
+
