@@ -1,9 +1,11 @@
 package com.example.music_player.service;
 
 import com.example.music_player.dao.PlaylistRepo;
+import com.example.music_player.dao.SongRepo;
 import com.example.music_player.dao.UserRepo;
 import com.example.music_player.dto.PlaylistDto;
 import com.example.music_player.model.Playlist;
+import com.example.music_player.model.Song;
 import com.example.music_player.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ public class PlaylistService {
     PlaylistRepo playlistRepo;
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    SongRepo songRepo;
 
 
     public void savePlaylist(Playlist playlist) {
@@ -25,7 +29,9 @@ public class PlaylistService {
 
     public Playlist getBYId(int id) {
         if(playlistRepo.existsById(id)){
+
            Playlist playlist= playlistRepo.findById(id).get();
+
            return playlist;
         }
         else
@@ -38,7 +44,12 @@ public class PlaylistService {
     }
 
     public String deleteById(int id) {
+
         if(playlistRepo.existsById(id)){
+            List<Song> songList=songRepo.findByPlaylistId(id);
+            if(!songList.isEmpty()){
+                songRepo.deleteByPlaylistId(id);
+            }
             playlistRepo.deleteById(id);
             return "deleted";
         }
@@ -66,3 +77,4 @@ public class PlaylistService {
 
 
 }
+
